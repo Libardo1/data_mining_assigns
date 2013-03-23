@@ -34,4 +34,12 @@ summary(heart_disease_reduced.log_reg)
 # View the odds of heart disease
 exp(cbind(OR = coef(heart_disease_reduced.log_reg), confint(heart_disease_reduced.log_reg)))
 
+# Convert both data frames to matrices for cross fold validation
+heart_disease.matrix <- model.matrix(~. - 1, data=heart_disease[,-10])
+heart_disease_reduced.matrix <- model.matrix(~. - 1, data=heart_disease_reduced[,-8])
+
 # Cross Validation on full data set
+heart_disease.five_fold_cv <- cv.glmnet(x=heart_disease.matrix, y=heart_disease$CHD, nfolds=5)
+
+# Cross Validation on reduced data set
+heart_disease_reduced.five_fold_cv <- cv.glmnet(x=heart_disease_reduced.matrix, y=heart_disease_reduced$CHD, nfolds=5)
