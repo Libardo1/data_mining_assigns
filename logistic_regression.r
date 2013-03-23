@@ -1,7 +1,7 @@
 library("glmnet")
 
 # Import heart disease data
-heart_disease <- read.csv("~/Downloads/heart_disease.csv")
+heart_disease <- read.csv("heart_disease.csv")
 
 # Delete the empty column
 heart_disease$X <- NULL
@@ -19,7 +19,7 @@ summary(heart_disease.log_reg)
 exp(cbind(OR = coef(heart_disease.log_reg), confint(heart_disease.log_reg)))
 
 # Import second data set and change to drop statistically insignificant attributes
-heart_disease_reduced <- read.csv("~/Downloads/heart_disease.csv")
+heart_disease_reduced <- read.csv("heart_disease.csv")
 heart_disease_reduced$X <- NULL
 heart_disease_reduced$CHD <- as.numeric(ifelse(heart_disease_reduced$CHD == "Present", 1, 0))
 heart_disease_reduced$ALCOHOL <- NULL
