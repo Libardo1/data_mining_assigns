@@ -32,6 +32,7 @@ heart_disease_reduced.log_reg = glm(formula=heart_disease_reduced$CHD ~ heart_di
 summary(heart_disease_reduced.log_reg)
 
 # View the odds of heart disease
+
 exp(cbind(OR = coef(heart_disease_reduced.log_reg), confint(heart_disease_reduced.log_reg)))
 
 # Convert both data frames to matrices for cross fold validation
